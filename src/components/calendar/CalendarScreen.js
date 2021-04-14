@@ -8,6 +8,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Navbar } from '../ui/Navbar';
 import { messages } from '../../helpers/calendar-messages-es';
 import { CalendarEvent } from './CalendarEvent';
+import { CalendarModal } from './CalendarModal';
 
 // Setup the localizer by providing the moment (or globalize) Object
 // to the correct localizer.
@@ -71,14 +72,15 @@ export const CalendarScreen = (props) => {
         endAccessor="end"
         messages={messages}
         eventPropGetter={eventStyleGetter}
-        components={{
-          event: CalendarEvent,
-        }}
         view={lastView}
         onDoubleClickEvent={onDoubleClick}
         onSelectEvent={onSelectEvent}
         onView={onViewChange}
+        components={{
+          event: CalendarEvent,
+        }}
       />
+      <CalendarModal />
     </div>
   );
 };
