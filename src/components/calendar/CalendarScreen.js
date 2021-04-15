@@ -9,6 +9,10 @@ import { Navbar } from '../ui/Navbar';
 import { messages } from '../../helpers/calendar-messages-es';
 import { CalendarEvent } from './CalendarEvent';
 import { CalendarModal } from './CalendarModal';
+import { useDispatch } from 'react-redux';
+
+//Actions
+import { uiOpenModal } from '../../redux/actions/ui';
 
 // Setup the localizer by providing the moment (or globalize) Object
 // to the correct localizer.
@@ -23,8 +27,10 @@ export const CalendarScreen = (props) => {
     localStorage.getItem('lastView') || 'month',
   );
 
+  //Open Modal
+  const dispatch = useDispatch();
   const onDoubleClick = (e) => {
-    console.log(e);
+    dispatch(uiOpenModal(true));
   };
 
   const onSelectEvent = (e) => {
