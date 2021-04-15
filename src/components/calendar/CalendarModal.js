@@ -2,19 +2,29 @@ import Modal from 'react-modal';
 import Swal from 'sweetalert2';
 import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../redux/actions/ui';
 import { customStyles } from '../../helpers/custom-styles';
+import { addNewEvent } from '../../redux/actions/calendar';
 
 Modal.setAppElement('#root');
 
 const now = moment().minutes(0).seconds(0).add(1, 'hours'); //16:00
 const nowPlusOneHour = now.clone().add(1, 'hours');
 
+const initEvent = {
+  title: '',
+  notes: '',
+  start: now.toDate(),
+  end: nowPlusOneHour.toDate(),
+};
+
 export const CalendarModal = () => {
+  const dispatch = useDispatch();
   //Modal is Open?
   const { modalOpen } = useSelector((state) => state.ui);
+  const { activeEvent } = useSelector((state) => state.calendar);
 
   const handleInputChange = ({ target }) => {
     setFormValues({
@@ -27,23 +37,23 @@ export const CalendarModal = () => {
   const [endDate, setEndDate] = useState(nowPlusOneHour.toDate());
   const [titleValid, setTitleValid] = useState(true);
 
-  const [formValues, setFormValues] = useState({
-    title: '',
-    notes: '',
-    start: now.toDate(),
-    end: nowPlusOneHour.toDate(),
-  });
-
+  const [formValues, setFormValues] = useState(initEvent);
   const { notes, title, start, end } = formValues;
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    console.log(activeEvent);
+  }, [activeEvent]);
+
+  /************************* Close Modal *************************/
   const closeModal = () => {
     //TODO: Cerrar modal
     dispatch(uiCloseModal(false));
+    setFormValues(initEvent); //limpiar form
   };
+  /************************* /Close Modal *************************/
 
   const handleStartDateChange = (e) => {
-    console.log(e);
+    // console.log(e);
     setStartDate(e);
     setFormValues({
       ...formValues,
@@ -52,7 +62,7 @@ export const CalendarModal = () => {
   };
 
   const handleEndDateChange = (e) => {
-    console.log(e);
+    // console.log(e);
     setEndDate(e);
     setFormValues({
       ...formValues,
@@ -64,7 +74,7 @@ export const CalendarModal = () => {
 
   const handleSubmitForm = (e) => {
     e.preventDefault(); //avoid form spread
-    console.log(formValues);
+    // console.log(formValues);
 
     const momentStart = moment(start);
     const momentEnd = moment(end);
@@ -78,6 +88,16 @@ export const CalendarModal = () => {
     }
 
     //TODO: realizar grabación db
+    dispatch(
+      addNewEvent({
+        ...formValues,
+        id: new Date().getTime(),
+        user: {
+          _id: '12312312afsfasfas',
+          name: 'Juan Pepo',
+        },
+      }),
+    );
 
     setTitleValid(true);
     closeModal();

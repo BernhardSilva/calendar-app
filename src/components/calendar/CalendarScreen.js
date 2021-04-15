@@ -9,10 +9,12 @@ import { Navbar } from '../ui/Navbar';
 import { messages } from '../../helpers/calendar-messages-es';
 import { CalendarEvent } from './CalendarEvent';
 import { CalendarModal } from './CalendarModal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setActiveEvent } from '../../redux/actions/calendar';
 
 //Actions
 import { uiOpenModal } from '../../redux/actions/ui';
+import { AddNewFab } from './AddNewFab';
 
 // Setup the localizer by providing the moment (or globalize) Object
 // to the correct localizer.
@@ -23,18 +25,25 @@ moment.updateLocale('en', null);
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
 
 export const CalendarScreen = (props) => {
+  const dispatch = useDispatch();
+
+  //TODO: leer del store los events
+  const { events } = useSelector((state) => state.calendar);
+  // console.log(JSON.stringify(events));
+
   const [lastView, setLastView] = useState(
     localStorage.getItem('lastView') || 'month',
   );
 
-  //Open Modal
-  const dispatch = useDispatch();
+  /************************* Open Modal *************************/
   const onDoubleClick = (e) => {
-    dispatch(uiOpenModal(true));
+    dispatch(uiOpenModal());
   };
+  /************************* /Open Modal *************************/
 
   const onSelectEvent = (e) => {
-    console.log(e);
+    // console.log(e);
+    dispatch(setActiveEvent(e));
   };
 
   const onViewChange = (e) => {
@@ -56,24 +65,13 @@ export const CalendarScreen = (props) => {
     };
   };
 
-  const envents = [
-    {
-      title: 'Cumpleaños de Padre',
-      start: moment().toDate(),
-      end: moment().add(2, 'hours').toDate(),
-      bgcolor: '#fafafa',
-      notes: 'Comprar cervezas',
-      user: { _id: '123', name: 'Bern' },
-    },
-  ];
-
   return (
     <div className="calendar-screen">
       <Navbar />
 
       <Calendar
         localizer={localizer}
-        events={envents}
+        events={events}
         startAccessor="start"
         endAccessor="end"
         messages={messages}
@@ -86,6 +84,7 @@ export const CalendarScreen = (props) => {
           event: CalendarEvent,
         }}
       />
+      <AddNewFab />
       <CalendarModal />
     </div>
   );
