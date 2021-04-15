@@ -1,4 +1,5 @@
 import Modal from 'react-modal';
+import Swal from 'sweetalert2';
 import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment';
 import { useState } from 'react';
@@ -17,7 +18,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 const now = moment().minutes(0).seconds(0).add(1, 'hours'); //16:00
-const last = now.clone().add(1, 'hours');
+const nowPlusOneHour = now.clone().add(1, 'hours');
 
 export const CalendarModal = () => {
   const handleInputChange = ({ target }) => {
@@ -28,18 +29,20 @@ export const CalendarModal = () => {
   };
 
   const [startDate, setStartDate] = useState(now.toDate());
-  const [lastDate, setLastDate] = useState(last.toDate());
+  const [endDate, setEndDate] = useState(nowPlusOneHour.toDate());
+  const [titleValid, setTitleValid] = useState(true);
 
   const [formValues, setFormValues] = useState({
-    title: 'Evento',
+    title: '',
     notes: '',
     start: now.toDate(),
-    end: last.toDate(),
+    end: nowPlusOneHour.toDate(),
   });
 
-  const { notes, title } = formValues;
+  const { notes, title, start, end } = formValues;
 
   const closeModal = () => {
+    //TODO: Cerrar modal
     console.log('closing...');
   };
 
@@ -52,18 +55,36 @@ export const CalendarModal = () => {
     });
   };
 
-  const handleLastDateChange = (e) => {
+  const handleEndDateChange = (e) => {
     console.log(e);
-    setLastDate(e);
+    setEndDate(e);
     setFormValues({
       ...formValues,
       end: e,
     });
   };
 
+  //************** VALIDATIONS **************//
+
   const handleSubmitForm = (e) => {
     e.preventDefault(); //avoid form spread
     console.log(formValues);
+
+    const momentStart = moment(start);
+    const momentEnd = moment(end);
+
+    if (momentStart.isSameOrAfter(momentEnd)) {
+      Swal.fire('Error', 'La fecha debe de ser mayor a la de inicio', 'error');
+      return;
+    }
+    if (title.trim() < 2) {
+      return setTitleValid(false);
+    }
+
+    //TODO: realizar grabación db
+
+    setTitleValid(true);
+    closeModal();
   };
 
   return (
@@ -91,8 +112,8 @@ export const CalendarModal = () => {
         <div className="form-group">
           <label>Fecha y hora fin</label>
           <DateTimePicker
-            onChange={handleLastDateChange}
-            value={lastDate}
+            onChange={handleEndDateChange}
+            value={endDate}
             minDate={startDate}
             className="form-control react-datetimepicker react-datetimepicker__wrapper"
           />
@@ -103,7 +124,7 @@ export const CalendarModal = () => {
           <label>Titulo y notas</label>
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${!titleValid && 'is-invalid'}`}
             placeholder="Título del evento"
             name="title"
             autoComplete="off"
