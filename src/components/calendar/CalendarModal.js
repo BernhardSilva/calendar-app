@@ -6,7 +6,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../redux/actions/ui';
 import { customStyles } from '../../helpers/custom-styles';
-import { addNewEvent } from '../../redux/actions/calendar';
+import {
+  addNewEvent,
+  clearActiveEvent,
+  updatedEvent,
+} from '../../redux/actions/events';
 
 Modal.setAppElement('#root');
 
@@ -41,13 +45,17 @@ export const CalendarModal = () => {
   const { notes, title, start, end } = formValues;
 
   useEffect(() => {
-    console.log(activeEvent);
+    if (activeEvent) {
+      setFormValues(activeEvent);
+    }
+    // console.log(activeEvent);
   }, [activeEvent]);
 
   /************************* Close Modal *************************/
   const closeModal = () => {
     //TODO: Cerrar modal
     dispatch(uiCloseModal(false));
+    dispatch(clearActiveEvent());
     setFormValues(initEvent); //limpiar form
   };
   /************************* /Close Modal *************************/
@@ -70,7 +78,7 @@ export const CalendarModal = () => {
     });
   };
 
-  //************** VALIDATIONS **************//
+  /************************* VALIDATIONS *************************/
 
   const handleSubmitForm = (e) => {
     e.preventDefault(); //avoid form spread
@@ -88,16 +96,20 @@ export const CalendarModal = () => {
     }
 
     //TODO: realizar grabación db
-    dispatch(
-      addNewEvent({
-        ...formValues,
-        id: new Date().getTime(),
-        user: {
-          _id: '12312312afsfasfas',
-          name: 'Juan Pepo',
-        },
-      }),
-    );
+    if (activeEvent) {
+      dispatch(updatedEvent(formValues));
+    } else {
+      dispatch(
+        addNewEvent({
+          ...formValues,
+          id: new Date().getTime(),
+          user: {
+            _id: '12312312afsfasfas',
+            name: 'Juan Pepo',
+          },
+        }),
+      );
+    }
 
     setTitleValid(true);
     closeModal();

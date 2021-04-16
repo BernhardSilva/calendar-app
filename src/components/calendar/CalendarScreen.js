@@ -10,7 +10,7 @@ import { messages } from '../../helpers/calendar-messages-es';
 import { CalendarEvent } from './CalendarEvent';
 import { CalendarModal } from './CalendarModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { setActiveEvent } from '../../redux/actions/calendar';
+import { setActiveEvent } from '../../redux/actions/events';
 
 //Actions
 import { uiOpenModal } from '../../redux/actions/ui';
