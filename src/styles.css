@@ -7,6 +7,10 @@ body {
   font-family: 'Hammersmith One', sans-serif;
 }
 
+.logo-navbar {
+  width: 32px;
+}
+
 .calendar-screen {
   display: flex;
   flex-flow: column;
@@ -200,7 +204,7 @@ body {
 
 /* WIDESCREEN MODAL */
 /* @media only screen and (max-height: 650px) { */
-@media (max-height: 650px) {
+@media (max-height: 650px) and (min-width: 720px) {
   .modal-title {
     font-size: 25px;
   }
@@ -271,5 +275,13 @@ body {
 
   .text-muted {
     display: none;
+  }
+}
+
+@media (max-height: 400px) and (min-width: 720px) {
+  .modal-textbox {
+    position: fixed;
+    height: 90px;
+    width: 91%;
   }
 }
