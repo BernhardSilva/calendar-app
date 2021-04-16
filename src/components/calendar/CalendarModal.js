@@ -47,9 +47,11 @@ export const CalendarModal = () => {
   useEffect(() => {
     if (activeEvent) {
       setFormValues(activeEvent);
+    } else {
+      setFormValues(initEvent);
     }
     // console.log(activeEvent);
-  }, [activeEvent]);
+  }, [activeEvent, setFormValues]);
 
   /************************* Close Modal *************************/
   const closeModal = () => {
@@ -125,14 +127,17 @@ export const CalendarModal = () => {
       className="modal"
       overlayClassName="modal-background"
     >
-      <h1 className="modal-title"> Nuevo evento </h1>
-      <button className="btn btn-danger fab-close" onClick={closeModal}>
+      <h1 className="modal-title">
+        {' '}
+        {!activeEvent ? 'Nuevo evento' : 'EditarEvento'}
+      </h1>
+      <button className="btn btn-danger fab fab-close" onClick={closeModal}>
         <i className="fa fa-times" />
       </button>
 
       <hr />
       <form className="container" onSubmit={handleSubmitForm}>
-        <div className="form-group">
+        <div className="form-group date-start">
           <label>Fecha y hora inicio</label>
           <DateTimePicker
             onChange={handleStartDateChange}
@@ -141,7 +146,7 @@ export const CalendarModal = () => {
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group date-end">
           <label>Fecha y hora fin</label>
           <DateTimePicker
             onChange={handleEndDateChange}
@@ -152,7 +157,7 @@ export const CalendarModal = () => {
         </div>
 
         <hr />
-        <div className="form-group">
+        <div className="form-group title-event">
           <label>Titulo y notas</label>
           <input
             type="text"
@@ -168,7 +173,7 @@ export const CalendarModal = () => {
           </small>
         </div>
 
-        <div className="form-group">
+        <div className="form-group content-event">
           <textarea
             type="text"
             className="form-control modal-textbox"
@@ -185,7 +190,7 @@ export const CalendarModal = () => {
 
         <button
           type="submit"
-          className="btn btn-outline-primary btn-block fourty-border"
+          className="btn btn-outline-primary btn-block fourty-border btn-save"
         >
           <i className="far fa-save"></i>
           <span> Guardar</span>

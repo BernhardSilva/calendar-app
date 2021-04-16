@@ -10,7 +10,7 @@ import { messages } from '../../helpers/calendar-messages-es';
 import { CalendarEvent } from './CalendarEvent';
 import { CalendarModal } from './CalendarModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { setActiveEvent } from '../../redux/actions/events';
+import { clearActiveEvent, setActiveEvent } from '../../redux/actions/events';
 
 //Actions
 import { uiOpenModal } from '../../redux/actions/ui';
@@ -51,11 +51,18 @@ export const CalendarScreen = (props) => {
     setLastView(e);
     localStorage.setItem('lastView', e);
   };
+
+  const onSelectSlot = (e) => {
+    // console.log(e);
+    dispatch(clearActiveEvent());
+  };
+
   const eventStyleGetter = (event, start, end, isSelected) => {
     // console.log(event, start, end, isSelected);
     const style = {
       backgroundColor: '#367Cf7',
-      borderRadius: '0px',
+      borderRadius: '20px',
+      borderColor: 'white',
       opacity: 0.8,
       display: 'block',
       color: 'white',
@@ -82,6 +89,8 @@ export const CalendarScreen = (props) => {
         onDoubleClickEvent={onDoubleClick}
         onSelectEvent={onSelectEvent}
         onView={onViewChange}
+        onSelectSlot={onSelectSlot}
+        selectable={true}
         components={{
           event: CalendarEvent,
         }}

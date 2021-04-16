@@ -1,13 +1,23 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { eventDeleted } from '../../redux/actions/events';
 
 export const DeleteEventFab = () => {
   const dispatch = useDispatch();
-  const deleteEvent = () => {
-    dispatch();
+  const { activeEvent } = useSelector((state) => state.calendar);
+
+  const handleDelete = () => {
+    dispatch(eventDeleted());
   };
   return (
-    <button className="btn btn-danger fab-delete" onClick={deleteEvent}>
-      <i className="fas fa-trash" />
-    </button>
+    <>
+      {activeEvent && (
+        <button
+          className="btn btn-danger fab fab-delete"
+          onClick={handleDelete}
+        >
+          <i className="fas fa-trash" />
+        </button>
+      )}
+    </>
   );
 };

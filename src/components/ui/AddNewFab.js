@@ -8,7 +8,7 @@ export const AddNewFab = () => {
   };
   return (
     <div>
-      <button className="btn btn-primary fab" onClick={openModalfab}>
+      <button className="btn btn-primary fab fab-add" onClick={openModalfab}>
         <i className="fas fa-plus" />
       </button>
     </div>
