@@ -167,7 +167,7 @@ export const CalendarModal = () => {
         <div className="form-group">
           <textarea
             type="text"
-            className="form-control"
+            className="form-control modal-textbox"
             placeholder="Notas"
             rows="5"
             name="notes"
@@ -179,7 +179,10 @@ export const CalendarModal = () => {
           </small>
         </div>
 
-        <button type="submit" className="btn btn-outline-primary btn-block">
+        <button
+          type="submit"
+          className="btn btn-outline-primary btn-block fourty-border"
+        >
           <i className="far fa-save"></i>
           <span> Guardar</span>
         </button>

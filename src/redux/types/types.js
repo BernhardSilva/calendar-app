@@ -7,4 +7,6 @@ export const types = {
 
   eventClearActive: '[UI] Clearing active event',
   eventUpdated: '[UI] Event updated',
+
+  eventDeleted: '[UI] Event deleted',
 };

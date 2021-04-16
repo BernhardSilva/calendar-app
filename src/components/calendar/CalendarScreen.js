@@ -14,7 +14,8 @@ import { setActiveEvent } from '../../redux/actions/events';
 
 //Actions
 import { uiOpenModal } from '../../redux/actions/ui';
-import { AddNewFab } from './AddNewFab';
+import { AddNewFab } from '../ui/AddNewFab';
+import { DeleteEventFab } from '../ui/DeleteEventFab';
 
 // Setup the localizer by providing the moment (or globalize) Object
 // to the correct localizer.
@@ -70,6 +71,7 @@ export const CalendarScreen = (props) => {
       <Navbar />
 
       <Calendar
+        className="calendar"
         localizer={localizer}
         events={events}
         startAccessor="start"
@@ -85,6 +87,7 @@ export const CalendarScreen = (props) => {
         }}
       />
       <AddNewFab />
+      <DeleteEventFab />
       <CalendarModal />
     </div>
   );

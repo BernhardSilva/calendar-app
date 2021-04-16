@@ -10,6 +10,10 @@ body {
   height: 100vh;
 }
 
+.calendar {
+  margin: 0 5%;
+}
+
 .rbc-calendar {
   height: 100%;
 }
@@ -46,7 +50,7 @@ body {
 
 .modal {
   background: white;
-  border-radius: 5px;
+  border-radius: 40px;
   color: rgb(51, 51, 51);
   display: inline;
   max-height: 620px;
@@ -72,4 +76,99 @@ body {
   padding: 25px;
   position: fixed;
   right: 25px;
+  z-index: 100;
+}
+
+.fab-delete {
+  border-radius: 100%;
+  bottom: 25px;
+  font-size: 18px;
+  padding: 25px 30px 25px 30px;
+  position: fixed;
+  left: 25px;
+  z-index: 100;
+}
+/* FORMS */
+.form-control {
+  border-radius: 20px;
+}
+
+.modal-textbox {
+  resize: none;
+}
+
+/* MISC */
+.fourty-border {
+  border-radius: 40px;
+}
+
+.logout-button {
+  border-radius: 100%;
+  padding: 10px 10px;
+}
+
+@media only screen and (max-width: 900px) {
+  .fab {
+    border-radius: 100%;
+    bottom: 20px;
+    font-size: 24px;
+    padding: 20px;
+    position: fixed;
+    right: 20px;
+    z-index: 100;
+  }
+
+  .fab-delete {
+    border-radius: 100%;
+    bottom: 20px;
+    font-size: 14.4px;
+    padding: 20px 24px 20px 24px;
+    position: fixed;
+    left: 20px;
+    z-index: 100;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .fab {
+    border-radius: 100%;
+    bottom: 15px;
+    font-size: 18px;
+    padding: 15px;
+    position: fixed;
+    right: 15px;
+    z-index: 100;
+  }
+
+  .fab-delete {
+    border-radius: 100%;
+    bottom: 15px;
+    font-size: 10.8px;
+    padding: 15px 18px 15px 18px;
+    position: fixed;
+    left: 15px;
+    z-index: 100;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .fab {
+    border-radius: 100%;
+    bottom: 15px;
+    font-size: 18px;
+    padding: 15px;
+    position: fixed;
+    right: 15px;
+    z-index: 100;
+  }
+
+  .fab-delete {
+    border-radius: 100%;
+    bottom: 15px;
+    font-size: 10.8px;
+    padding: 15px 18px 15px 18px;
+    position: fixed;
+    left: 15px;
+    z-index: 100;
+  }
 }
