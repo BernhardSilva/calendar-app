@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 export const DeleteEventFab = () => {
   const dispatch = useDispatch();
   const deleteEvent = () => {
-    // dispatch();
+    dispatch();
   };
   return (
     <button className="btn btn-danger fab-delete" onClick={deleteEvent}>
