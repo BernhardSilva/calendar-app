@@ -126,6 +126,10 @@ export const CalendarModal = () => {
       overlayClassName="modal-background"
     >
       <h1 className="modal-title"> Nuevo evento </h1>
+      <button className="btn btn-danger fab-close" onClick={closeModal}>
+        <i className="fa fa-times" />
+      </button>
+
       <hr />
       <form className="container" onSubmit={handleSubmitForm}>
         <div className="form-group">

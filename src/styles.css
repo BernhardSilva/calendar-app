@@ -117,10 +117,26 @@ body {
   padding: 10px 10px;
 }
 
+.fab-close {
+  border-radius: 100%;
+  top: 20px;
+  font-size: 15px;
+  padding: 0 6px;
+  position: fixed;
+  right: 30px;
+}
+
 /* RESPONSIVE MEDIA QUERIES */
 @media only screen and (max-width: 900px) {
   .calendar {
     margin: 0 1%;
+  }
+
+  .modal-title {
+    display: flex;
+    font-size: 40px;
+    padding-top: 20px;
+    justify-content: center;
   }
 
   .modal {
@@ -161,6 +177,13 @@ body {
     margin: 0 1%;
   }
 
+  .modal-title {
+    display: flex;
+    font-size: 30px;
+    padding-top: 20px;
+    justify-content: center;
+  }
+
   .modal {
     background: white;
     border-radius: 40px;
@@ -198,6 +221,13 @@ body {
 @media only screen and (max-width: 400px) {
   .calendar {
     margin: 0 1%;
+  }
+
+  .modal-title {
+    display: flex;
+    font-size: 25px;
+    padding-top: 20px;
+    justify-content: center;
   }
 
   .modal {
