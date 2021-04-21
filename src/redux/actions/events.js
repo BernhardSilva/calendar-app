@@ -22,3 +22,7 @@ export const updatedEvent = (event) => ({
 export const eventDeleted = (event) => ({
   type: types.eventDeleted,
 });
+
+export const clearEvents = () => ({
+  type: types.eventClearAll,
+});

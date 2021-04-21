@@ -5,11 +5,11 @@ const initialState = {
   events: [
     {
       id: new Date().getTime(),
-      title: 'Cumpleaños Bernhard',
+      title: 'Bernhard Birthday!',
       start: moment().toDate(),
       end: moment().add(1, 'hours').toDate(),
       bgcolor: '#fafafa',
-      notes: 'Hay que comprar mucha cerveza artesanal!',
+      notes: "Should we buy craft beers or shouldn't?",
       user: { _id: '123123213', name: 'Bernhard' },
     },
   ],
@@ -51,6 +51,12 @@ export const calendarReducer = (state = initialState, action) => {
         events: state.events.filter((e) => e.id !== state.activeEvent.id),
         activeEvent: null,
       };
+
+    case types.eventClearAll:
+      return {
+        events: [],
+      };
+
     default:
       return {
         ...state,

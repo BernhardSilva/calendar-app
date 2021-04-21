@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Hammersmith+One&display=swap');
 
-html,
 body {
   height: 100%;
   width: 100%;
@@ -9,6 +8,7 @@ body {
 
 .logo-navbar {
   width: 32px;
+  border-color: white;
 }
 
 .calendar-screen {
@@ -89,7 +89,7 @@ body {
 
 .fab-logout {
   border-radius: 100%;
-  padding: 10px 10px;
+  padding: 6px 6px;
   top: 10px;
   right: 10px;
 }
@@ -198,11 +198,11 @@ body {
   }
 
   .fab-logout {
-    padding: 0 1px;
+    padding: 1px 1px;
   }
 }
 
-/* WIDESCREEN MODAL */
+/* TODO:WIDESCREEN MODAL */
 /* @media only screen and (max-height: 650px) { */
 @media (max-height: 650px) and (min-width: 720px) {
   .modal-title {
