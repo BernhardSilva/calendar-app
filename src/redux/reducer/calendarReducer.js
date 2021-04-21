@@ -52,14 +52,7 @@ export const calendarReducer = (state = initialState, action) => {
         activeEvent: null,
       };
 
-    case types.eventClearAll:
-      return {
-        events: [],
-      };
-
     default:
-      return {
-        ...state,
-      };
+      return state;
   }
 };

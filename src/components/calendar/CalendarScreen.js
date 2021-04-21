@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 //I import this to change the language of the calendar
-import 'moment/locale/es';
+import 'moment/locale/en-au';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 import { Navbar } from '../ui/Navbar';
-import { messages } from '../../helpers/calendar-messages-es';
+// import { messages } from '../../helpers/calendar-messages-es'; //<-My custom messages in spanish
 import { CalendarEvent } from './CalendarEvent';
 import { CalendarModal } from './CalendarModal';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,7 +25,7 @@ moment.updateLocale('en', null);
 
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
 
-export const CalendarScreen = (props) => {
+export const CalendarScreen = () => {
   const dispatch = useDispatch();
 
   //TODO: leer del store los events
@@ -38,6 +38,8 @@ export const CalendarScreen = (props) => {
 
   /************************* Open Modal *************************/
   const onDoubleClick = (e) => {
+    console.log('IM HERE!!');
+    console.log(e);
     dispatch(uiOpenModal());
   };
   /************************* /Open Modal *************************/
@@ -83,7 +85,7 @@ export const CalendarScreen = (props) => {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        messages={messages}
+        // messages={messages}
         eventPropGetter={eventStyleGetter}
         view={lastView}
         onDoubleClickEvent={onDoubleClick}

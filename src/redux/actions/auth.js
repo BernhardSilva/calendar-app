@@ -46,7 +46,7 @@ export const startChecking = () => {
   return async (dispatch) => {
     const res = await fetchWithToken('auth/renew');
     const body = await res.json();
-    const { uid, name, msg, token, ok } = body;
+    const { uid, name, token, ok } = body;
 
     if (ok) {
       localStorage.setItem('token', token);

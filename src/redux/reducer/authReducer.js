@@ -25,6 +25,6 @@ export const authReducer = (state = initialState, action) => {
         checking: false,
       };
     default:
-      return { ...state };
+      return state;
   }
 };

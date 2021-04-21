@@ -1,9 +1,9 @@
-import Modal from 'react-modal';
-import Swal from 'sweetalert2';
-import DateTimePicker from 'react-datetime-picker';
-import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Modal from 'react-modal';
+import moment from 'moment';
+import Swal from 'sweetalert2';
+import DateTimePicker from 'react-datetime-picker';
 import { uiCloseModal } from '../../redux/actions/ui';
 import { customStyles } from '../../helpers/custom-styles';
 import {
@@ -25,17 +25,10 @@ const initEvent = {
 };
 
 export const CalendarModal = () => {
-  const dispatch = useDispatch();
   //Modal is Open?
   const { modalOpen } = useSelector((state) => state.ui);
   const { activeEvent } = useSelector((state) => state.calendar);
-
-  const handleInputChange = ({ target }) => {
-    setFormValues({
-      ...formValues,
-      [target.name]: target.value,
-    });
-  };
+  const dispatch = useDispatch();
 
   const [startDate, setStartDate] = useState(now.toDate());
   const [endDate, setEndDate] = useState(nowPlusOneHour.toDate());
@@ -53,10 +46,17 @@ export const CalendarModal = () => {
     // console.log(activeEvent);
   }, [activeEvent, setFormValues]);
 
+  const handleInputChange = ({ target }) => {
+    setFormValues({
+      ...formValues,
+      [target.name]: target.value,
+    });
+  };
+
   /************************* Close Modal *************************/
   const closeModal = () => {
     //TODO: Cerrar modal
-    dispatch(uiCloseModal(false));
+    dispatch(uiCloseModal());
     dispatch(clearActiveEvent());
     setFormValues(initEvent); //limpiar form
   };
@@ -90,8 +90,11 @@ export const CalendarModal = () => {
     const momentEnd = moment(end);
 
     if (momentStart.isSameOrAfter(momentEnd)) {
-      Swal.fire('Error', 'La fecha debe de ser mayor a la de inicio', 'error');
-      return;
+      return Swal.fire(
+        'Error',
+        'La fecha debe de ser mayor a la de inicio',
+        'error',
+      );
     }
     if (title.trim() < 2) {
       return setTitleValid(false);
