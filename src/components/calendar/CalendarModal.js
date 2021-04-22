@@ -180,7 +180,7 @@ export const CalendarModal = () => {
           className="btn btn-outline-primary btn-block fourty-border btn-save"
         >
           <i className="far fa-save"></i>
-          <span> Guardar</span>
+          <span> Save</span>
         </button>
       </form>
     </Modal>
