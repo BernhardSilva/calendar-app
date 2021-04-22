@@ -189,7 +189,11 @@ export const LoginScreen = () => {
             </div>
 
             <div className="form-group">
-              <input type="submit" className="btnSubmit" value="Crear cuenta" />
+              <input
+                type="submit"
+                className="btnSubmit"
+                value="Create Account"
+              />
             </div>
           </form>
         </div>
