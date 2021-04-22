@@ -1,6 +1,14 @@
 .login-container {
   margin-top: 15%;
 }
+
+.logo-login {
+  display: block;
+  padding-bottom: 20px;
+  margin: auto auto;
+  width: 100px;
+}
+
 .login-form-1 {
   border-radius: 40px;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);

@@ -4,20 +4,21 @@ import validator from 'validator';
 import { useDispatch } from 'react-redux';
 import { useForm } from '../../hooks/useForm';
 import { startLogin, startRegister } from '../../redux/actions/auth';
+import logo from '../../assets/logo.svg';
 
 export const LoginScreen = () => {
   const dispatch = useDispatch();
 
   const [formLoginValues, handleLoginInputChange] = useForm({
-    lEmail: 'test@gmail.com',
-    lPassword: 'StrongPassword123$',
+    lEmail: '',
+    lPassword: '',
   });
 
   const [formRegisterValues, handleRegisterInputChange] = useForm({
-    rName: 'test2',
-    rEmail: 'test2@gmail.com',
-    rPassword: 'StrongPassword123$',
-    rPasswordRepeat: 'StrongPassword123$',
+    rName: '',
+    rEmail: '',
+    rPassword: '',
+    rPasswordRepeat: '',
   });
 
   const { lEmail, lPassword } = formLoginValues;
@@ -109,6 +110,9 @@ export const LoginScreen = () => {
 
   return (
     <div className="container login-container">
+      <span>
+        <img src={logo} alt="logo" className="logo-login" />
+      </span>
       <div className="row">
         <div className="col-md-6 login-form-1">
           <h3>Sign in</h3>

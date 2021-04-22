@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Hammersmith+One&display=swap');
 
 body {
+  background-color: rgba(255, 255, 255, 0.671);
   height: 100%;
   width: 100%;
   font-family: 'Hammersmith One', sans-serif;
 }
 
 .logo-navbar {
-  width: 32px;
-  border-color: white;
+  width: 40px;
 }
 
 .calendar-screen {
@@ -78,6 +78,16 @@ body {
 
 .react-datetimepicker__wrapper {
   border: 0px solid gray !important;
+}
+
+.react-datetime-picker__clear-button__icon {
+  pointer-events: none;
+  display: none;
+}
+
+.react-datetime-picker__clear-button {
+  pointer-events: none;
+  display: none;
 }
 
 /* FABS*/

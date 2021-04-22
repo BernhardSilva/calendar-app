@@ -46,7 +46,7 @@ export const CalendarScreen = () => {
 
   /************************* Open Modal *************************/
   const onDoubleClick = (e) => {
-    console.log(e);
+    // console.log(e);
     dispatch(uiOpenModal());
   };
   /************************* /Open Modal *************************/
@@ -68,10 +68,9 @@ export const CalendarScreen = () => {
 
   const eventStyleGetter = (event, start, end, isSelected) => {
     // console.log(event, start, end, isSelected);
-    console.log(event.user);
 
     const style = {
-      backgroundColor: uid === event.user._id ? '#367Cf7' : '#464040',
+      backgroundColor: uid === event.user._id ? '#367Cf7' : '#363a3e',
       borderRadius: '20px',
       borderColor: 'white',
       opacity: 0.8,

@@ -33,14 +33,14 @@ export const startRegister = (name, email, password) => {
       );
       const body = await res.json();
       const { uid, token, ok, msg } = body;
-      console.log(body);
+      // console.log(body);
       if (ok) {
         localStorage.setItem('token', token);
         localStorage.setItem('token-init-date', new Date().getTime());
 
         dispatch(login({ uid, body: body.name }));
 
-        Swal.fire('Success', `Wellcome ${body.name}! 👏🐼 `, 'success');
+        Swal.fire(`Wellcome ${body.name}! 👏🐼 `, `Success!`, 'success');
       } else {
         Swal.fire('Error', msg, 'error');
       }

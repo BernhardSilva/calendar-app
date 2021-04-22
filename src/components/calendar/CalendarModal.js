@@ -9,7 +9,7 @@ import { customStyles } from '../../helpers/custom-styles';
 import {
   clearActiveEvent,
   eventStartAddNew,
-  updatedEvent,
+  eventStartUpdate,
 } from '../../redux/actions/events';
 
 Modal.setAppElement('#root');
@@ -55,7 +55,6 @@ export const CalendarModal = () => {
 
   /************************* Close Modal *************************/
   const closeModal = () => {
-    //TODO: Cerrar modal
     dispatch(uiCloseModal());
     dispatch(clearActiveEvent());
     setFormValues(initEvent); //limpiar form
@@ -92,7 +91,7 @@ export const CalendarModal = () => {
     if (momentStart.isSameOrAfter(momentEnd)) {
       return Swal.fire(
         'Error',
-        'End date needs to be bigger than start date.',
+        'End date needs to be greater than start date.',
         'error',
       );
     }
@@ -100,9 +99,9 @@ export const CalendarModal = () => {
       return setTitleValid(false);
     }
 
-    //TODO: realizar grabación db
+    //save to db
     if (activeEvent) {
-      dispatch(updatedEvent(formValues));
+      dispatch(eventStartUpdate(formValues));
     } else {
       dispatch(eventStartAddNew(formValues));
     }
@@ -123,7 +122,7 @@ export const CalendarModal = () => {
     >
       <h1 className="modal-title">
         {' '}
-        {!activeEvent ? 'New event' : 'Update event'}
+        {!activeEvent ? 'New event ✍️' : 'Update event ✏️'}
       </h1>
       <button className="btn btn-danger fab fab-close" onClick={closeModal}>
         <i className="fa fa-times" />
