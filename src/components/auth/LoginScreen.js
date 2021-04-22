@@ -1,5 +1,6 @@
 import './login.css';
 import Swal from 'sweetalert2';
+import validator from 'validator';
 import { useDispatch } from 'react-redux';
 import { useForm } from '../../hooks/useForm';
 import { startLogin, startRegister } from '../../redux/actions/auth';
@@ -24,17 +25,85 @@ export const LoginScreen = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(startLogin(lEmail, lPassword));
-
-    // console.log(formLoginValues);
+    try {
+      if (!validator.isEmail(lEmail)) {
+        return Swal.fire(
+          'Error',
+          'Email is required, needs to be valid ex: email@email.com',
+          'error',
+        );
+      }
+      if (lPassword.length === 0) {
+        return Swal.fire('Error', 'Password is required', 'error');
+      }
+      if (
+        !validator.isStrongPassword(lPassword, [
+          {
+            minLength: 8,
+            minLowercase: 1,
+            minUppercase: 1,
+            minNumbers: 1,
+            minSymbols: 1,
+          },
+        ])
+      ) {
+        return Swal.fire(
+          'Error',
+          'Passoword is required, needs to be a Strong password ex: Strong1@, min conditions 8 chars, 1 lowercase, 1 uppercase, 1 number, 1 symbol',
+          'error',
+        );
+      }
+      dispatch(startLogin(lEmail, lPassword));
+    } catch (error) {
+      Swal.fire('Error', error, 'error');
+    }
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
-    if (rPassword !== rPasswordRepeat) {
-      return Swal.fire('Error', 'Las contraseñas no coinciden', 'error');
+    try {
+      if (rName.length < 2) {
+        return Swal.fire('Error', 'Name is required, min lenght 2', 'error');
+      }
+      if (!validator.isEmail(rEmail)) {
+        return Swal.fire(
+          'Error',
+          'Email is required, needs to be valid ex: email@email.com',
+          'error',
+        );
+      }
+      if (rPassword.length === 0) {
+        return Swal.fire('Error', 'Password is required', 'error');
+      }
+      if (
+        !validator.isStrongPassword(rPassword, [
+          {
+            minLength: 8,
+            minLowercase: 1,
+            minUppercase: 1,
+            minNumbers: 1,
+            minSymbols: 1,
+          },
+        ])
+      ) {
+        return Swal.fire(
+          'Error',
+          'Passoword is required, needs to be a Strong password ex: Strong1@, min conditions 8 chars, 1 lowercase, 1 uppercase, 1 number, 1 symbol',
+          'error',
+        );
+      }
+      if (rPassword !== rPasswordRepeat) {
+        return Swal.fire(
+          'Error',
+          `Password and confirmation password doesn't match`,
+          'error',
+        );
+      }
+      dispatch(startRegister(rName, rEmail, rPassword));
+    } catch (error) {
+      Swal.fire('Error', error, 'error');
     }
-    dispatch(startRegister(rName, rEmail, rPassword));
+
     // console.log(rName, rEmail, rPassword);
   };
 
@@ -42,13 +111,13 @@ export const LoginScreen = () => {
     <div className="container login-container">
       <div className="row">
         <div className="col-md-6 login-form-1">
-          <h3>Ingreso</h3>
+          <h3>Sign in</h3>
           <form onSubmit={handleLogin}>
             <div className="form-group">
               <input
                 type="text"
                 className="form-control"
-                placeholder="Correo"
+                placeholder="Email"
                 name="lEmail"
                 value={lEmail}
                 onChange={handleLoginInputChange}
@@ -58,7 +127,7 @@ export const LoginScreen = () => {
               <input
                 type="password"
                 className="form-control"
-                placeholder="Contraseña"
+                placeholder="Password"
                 name="lPassword"
                 value={lPassword}
                 onChange={handleLoginInputChange}
@@ -71,13 +140,13 @@ export const LoginScreen = () => {
         </div>
 
         <div className="col-md-6 login-form-2">
-          <h3>Registro</h3>
+          <h3>Sign up</h3>
           <form onSubmit={handleRegister}>
             <div className="form-group">
               <input
                 type="text"
                 className="form-control"
-                placeholder="Nombre"
+                placeholder="Name"
                 name="rName"
                 value={rName}
                 onChange={handleRegisterInputChange}
@@ -87,7 +156,7 @@ export const LoginScreen = () => {
               <input
                 type="email"
                 className="form-control"
-                placeholder="Correo"
+                placeholder="Email"
                 name="rEmail"
                 value={rEmail}
                 onChange={handleRegisterInputChange}
@@ -97,7 +166,7 @@ export const LoginScreen = () => {
               <input
                 type="password"
                 className="form-control"
-                placeholder="Contraseña"
+                placeholder="Password"
                 name="rPassword"
                 value={rPassword}
                 onChange={handleRegisterInputChange}
@@ -108,7 +177,7 @@ export const LoginScreen = () => {
               <input
                 type="password"
                 className="form-control"
-                placeholder="Repita la contraseña"
+                placeholder="Repeat password"
                 name="rPasswordRepeat"
                 value={rPasswordRepeat}
                 onChange={handleRegisterInputChange}

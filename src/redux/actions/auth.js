@@ -4,40 +4,48 @@ import { types } from '../types/types';
 
 export const startLogin = (email, password) => {
   return async (dispatch) => {
-    const res = await fetchWithoutToken('auth', { email, password }, 'POST');
-    const body = await res.json();
-    const { uid, name, msg, token, ok } = body;
+    try {
+      const res = await fetchWithoutToken('auth', { email, password }, 'POST');
+      const body = await res.json();
+      const { uid, name, msg, token, ok } = body;
 
-    if (ok) {
-      localStorage.setItem('token', token);
-      localStorage.setItem('token-init-date', new Date().getTime());
+      if (ok) {
+        localStorage.setItem('token', token);
+        localStorage.setItem('token-init-date', new Date().getTime());
 
-      dispatch(login({ uid, name }));
-    } else {
-      Swal.fire('Error', msg, 'error');
+        dispatch(login({ uid, name }));
+      } else {
+        Swal.fire('Error', msg, 'error');
+      }
+    } catch (error) {
+      Swal.fire('Error', error, 'error');
     }
   };
 };
 
 export const startRegister = (name, email, password) => {
   return async (dispatch) => {
-    const res = await fetchWithoutToken(
-      'auth/register',
-      { name, email, password },
-      'POST',
-    );
-    const body = await res.json();
-    const { uid, msg, token, ok } = body;
+    try {
+      const res = await fetchWithoutToken(
+        'auth/register',
+        { name, email, password },
+        'POST',
+      );
+      const body = await res.json();
+      const { uid, token, ok, msg } = body;
+      console.log(body);
+      if (ok) {
+        localStorage.setItem('token', token);
+        localStorage.setItem('token-init-date', new Date().getTime());
 
-    if (ok) {
-      localStorage.setItem('token', token);
-      localStorage.setItem('token-init-date', new Date().getTime());
+        dispatch(login({ uid, body: body.name }));
 
-      dispatch(login({ uid, body: body.name }));
-
-      Swal.fire('Success', 'User created', 'success');
-    } else {
-      Swal.fire('Error', msg, 'error');
+        Swal.fire('Success', `Wellcome ${body.name}! 👏🐼 `, 'success');
+      } else {
+        Swal.fire('Error', msg, 'error');
+      }
+    } catch (error) {
+      Swal.fire('Error', error, 'error');
     }
   };
 };

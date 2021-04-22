@@ -7,8 +7,8 @@ import DateTimePicker from 'react-datetime-picker';
 import { uiCloseModal } from '../../redux/actions/ui';
 import { customStyles } from '../../helpers/custom-styles';
 import {
-  addNewEvent,
   clearActiveEvent,
+  eventStartAddNew,
   updatedEvent,
 } from '../../redux/actions/events';
 
@@ -92,7 +92,7 @@ export const CalendarModal = () => {
     if (momentStart.isSameOrAfter(momentEnd)) {
       return Swal.fire(
         'Error',
-        'La fecha debe de ser mayor a la de inicio',
+        'End date needs to be bigger than start date.',
         'error',
       );
     }
@@ -104,16 +104,7 @@ export const CalendarModal = () => {
     if (activeEvent) {
       dispatch(updatedEvent(formValues));
     } else {
-      dispatch(
-        addNewEvent({
-          ...formValues,
-          id: new Date().getTime(),
-          user: {
-            _id: '12312312afsfasfas',
-            name: 'John Smith',
-          },
-        }),
-      );
+      dispatch(eventStartAddNew(formValues));
     }
 
     setTitleValid(true);
@@ -132,7 +123,7 @@ export const CalendarModal = () => {
     >
       <h1 className="modal-title">
         {' '}
-        {!activeEvent ? 'Nuevo evento' : 'EditarEvento'}
+        {!activeEvent ? 'New event' : 'Update event'}
       </h1>
       <button className="btn btn-danger fab fab-close" onClick={closeModal}>
         <i className="fa fa-times" />
@@ -141,7 +132,7 @@ export const CalendarModal = () => {
       <hr />
       <form className="container" onSubmit={handleSubmitForm}>
         <div className="form-group date-start">
-          <label>Fecha y hora inicio</label>
+          <label>Start date and time</label>
           <DateTimePicker
             onChange={handleStartDateChange}
             value={startDate}
@@ -150,7 +141,7 @@ export const CalendarModal = () => {
         </div>
 
         <div className="form-group date-end">
-          <label>Fecha y hora fin</label>
+          <label>End date and time</label>
           <DateTimePicker
             onChange={handleEndDateChange}
             value={endDate}
@@ -161,34 +152,28 @@ export const CalendarModal = () => {
 
         <hr />
         <div className="form-group title-event">
-          <label>Titulo y notas</label>
+          <label>Title and notes</label>
           <input
             type="text"
             className={`form-control ${!titleValid && 'is-invalid'}`}
-            placeholder="Título del evento"
+            placeholder="Write here your title"
             name="title"
             autoComplete="off"
             value={title}
             onChange={handleInputChange}
           />
-          <small id="emailHelp" className="form-text text-muted">
-            Una descripción corta
-          </small>
         </div>
 
         <div className="form-group content-event">
           <textarea
             type="text"
             className="form-control modal-textbox"
-            placeholder="Notas"
+            placeholder="Enter here your note 📝"
             rows="5"
             name="notes"
             value={notes}
             onChange={handleInputChange}
           ></textarea>
-          <small id="emailHelp" className="form-text text-muted">
-            Información adicional
-          </small>
         </div>
 
         <button

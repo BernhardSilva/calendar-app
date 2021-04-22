@@ -18,28 +18,9 @@ export const AppRouter = () => {
 
   if (checking) {
     return (
-      <>
-        <h3
-          style={{
-            position: 'fixed',
-            top: '30%',
-            left: '47%',
-            alignItems: 'center',
-          }}
-        >
-          Please wait...
-        </h3>
-        <img
-          src={Loading}
-          alt="Loading"
-          style={{
-            position: 'fixed',
-            top: '30%',
-            left: '40%',
-            alignItems: 'center',
-          }}
-        />
-      </>
+      <div>
+        <img src={Loading} alt="Loading" className="loading-img" />
+      </div>
     );
   }
 
