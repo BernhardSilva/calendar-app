@@ -11,6 +11,13 @@ body {
   width: 40px;
 }
 
+.navbar-label {
+  position: fixed;
+  top: 2%;
+  right: 10%;
+  color: black;
+}
+
 .calendar-screen {
   display: flex;
   flex-flow: column;
@@ -98,10 +105,10 @@ body {
 }
 
 .fab-logout {
-  border-radius: 100%;
-  padding: 6px 6px;
-  top: 10px;
-  right: 10px;
+  font-size: 20px;
+  padding: 12px 10px;
+  top: 1%;
+  right: 1%;
 }
 
 .fab-add {
@@ -146,6 +153,10 @@ body {
 
 /* RESPONSIVE MEDIA QUERIES */
 @media only screen and (max-width: 900px) {
+  .navbar-label {
+    top: 2.5%;
+  }
+
   .modal-title {
     font-size: 40px;
   }
@@ -156,8 +167,8 @@ body {
   }
 
   .fab-logout {
-    font-size: 15px;
-    padding: 5px 5px;
+    font-size: 18px;
+    padding: 10px 8px;
   }
 
   .fab-add {
@@ -180,6 +191,10 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
+  .navbar-label {
+    top: 2.5%;
+    right: 20%;
+  }
   .modal-title {
     font-size: 30px;
   }
@@ -214,7 +229,8 @@ body {
   }
 
   .fab-logout {
-    padding: 1px 1px;
+    font-size: 12px;
+    padding: 6px 4px;
   }
 }
 

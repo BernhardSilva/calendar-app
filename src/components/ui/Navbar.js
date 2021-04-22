@@ -17,11 +17,9 @@ export const Navbar = () => {
       <span className="navbar-brand">
         <img src={logo} alt="logo" className="logo-navbar" />
       </span>
-      <label style={{ color: 'black', paddingLeft: '80%', marginTop: '10px' }}>
-        {name}
-      </label>
+      <label className="navbar-label">{name}</label>
       <button
-        className="btn btn-secondary fab-logout"
+        className="btn btn-secondary fab fab-logout"
         alt="Logout"
         onClick={handleLogout}
       >
