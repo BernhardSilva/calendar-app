@@ -13,12 +13,12 @@ body {
 }
 
 .logo-navbar {
-  width: 40px;
+  width: 45px;
 }
 
 .navbar-label {
   position: fixed;
-  top: 2%;
+  top: 3%;
   right: 10%;
   color: black;
 }
@@ -110,9 +110,9 @@ body {
 }
 
 .fab-logout {
-  font-size: 20px;
-  padding: 12px 10px;
-  top: 1%;
+  font-size: 16px;
+  padding: 12px 9px;
+  top: 1.6%;
   right: 1%;
 }
 
@@ -171,11 +171,6 @@ body {
     padding: 10px;
   }
 
-  .fab-logout {
-    font-size: 18px;
-    padding: 10px 8px;
-  }
-
   .fab-add {
     bottom: 20px;
     font-size: 24px;
@@ -231,11 +226,6 @@ body {
   .modal {
     max-width: 300px;
     max-height: 600px;
-  }
-
-  .fab-logout {
-    font-size: 12px;
-    padding: 6px 4px;
   }
 }
 
