@@ -109,93 +109,95 @@ export const LoginScreen = () => {
   };
 
   return (
-    <div className="container login-container">
-      <span>
-        <img src={logo} alt="logo" className="logo-login" />
-      </span>
-      <div className="row">
-        <div className="col-md-6 login-form-1">
-          <h3>Sign in</h3>
-          <form onSubmit={handleLogin}>
-            <div className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Email"
-                name="lEmail"
-                value={lEmail}
-                onChange={handleLoginInputChange}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Password"
-                name="lPassword"
-                value={lPassword}
-                onChange={handleLoginInputChange}
-              />
-            </div>
-            <div className="form-group">
-              <input type="submit" className="btnSubmit" value="Login" />
-            </div>
-          </form>
-        </div>
+    <div className="container-login-screen gradient-animation">
+      <div className="container login-container">
+        <span>
+          <img src={logo} alt="logo" className="logo-login" />
+        </span>
+        <div className="row">
+          <div className="col-md-6 login-form-1">
+            <h3>Sign in</h3>
+            <form onSubmit={handleLogin}>
+              <div className="form-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Email"
+                  name="lEmail"
+                  value={lEmail}
+                  onChange={handleLoginInputChange}
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Password"
+                  name="lPassword"
+                  value={lPassword}
+                  onChange={handleLoginInputChange}
+                />
+              </div>
+              <div className="form-group">
+                <input type="submit" className="btnSubmit" value="Login" />
+              </div>
+            </form>
+          </div>
 
-        <div className="col-md-6 login-form-2">
-          <h3>Sign up</h3>
-          <form onSubmit={handleRegister}>
-            <div className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Name"
-                name="rName"
-                value={rName}
-                onChange={handleRegisterInputChange}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="email"
-                className="form-control"
-                placeholder="Email"
-                name="rEmail"
-                value={rEmail}
-                onChange={handleRegisterInputChange}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Password"
-                name="rPassword"
-                value={rPassword}
-                onChange={handleRegisterInputChange}
-              />
-            </div>
+          <div className="col-md-6 login-form-2">
+            <h3>Sign up</h3>
+            <form onSubmit={handleRegister}>
+              <div className="form-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Name"
+                  name="rName"
+                  value={rName}
+                  onChange={handleRegisterInputChange}
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Email"
+                  name="rEmail"
+                  value={rEmail}
+                  onChange={handleRegisterInputChange}
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Password"
+                  name="rPassword"
+                  value={rPassword}
+                  onChange={handleRegisterInputChange}
+                />
+              </div>
 
-            <div className="form-group">
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Repeat password"
-                name="rPasswordRepeat"
-                value={rPasswordRepeat}
-                onChange={handleRegisterInputChange}
-              />
-            </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Repeat password"
+                  name="rPasswordRepeat"
+                  value={rPasswordRepeat}
+                  onChange={handleRegisterInputChange}
+                />
+              </div>
 
-            <div className="form-group">
-              <input
-                type="submit"
-                className="btnSubmit"
-                value="Create Account"
-              />
-            </div>
-          </form>
+              <div className="form-group">
+                <input
+                  type="submit"
+                  className="btnSubmit"
+                  value="Create Account"
+                />
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

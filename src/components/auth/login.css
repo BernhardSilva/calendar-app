@@ -1,7 +1,12 @@
+.container-login-screen {
+  width: 100vw;
+  height: 100vh;
+}
 .login-container {
   height: 100%;
   width: 100%;
-  margin-top: 5%;
+  padding-top: 8%;
+  /* margin-top: 5%; */
 }
 
 .logo-login {
@@ -58,4 +63,22 @@
   color: #0062cc;
   font-weight: 600;
   text-decoration: none;
+}
+
+.gradient-animation {
+  background: linear-gradient(-45deg, #ffffff, #0c0c0c, #0062cc);
+  background-size: 400% 400%;
+  animation: gradient 20s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
